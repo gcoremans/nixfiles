@@ -1,5 +1,7 @@
 { inputs, outputs, authorizedKeys, lib, config, pkgs, ... }:
 {
+  imports = [ ./fish ];
+
   nixpkgs = {
     config = {
       allowUnfree = true;
@@ -24,21 +26,6 @@
     nslookup
     ripgrep
   ];
-
-  evironment.shells = [ pkgs.fish ];
-
-  programs.fish = {
-    enable = true;
-
-    vendor.completions.enable = true;
-    vendor.config.enable = true;
-
-    shellAbbrs = {
-      dd = "dd bs=256K status=progress";
-      py = "python3";
-      ss = "ss -ptua";
-    };
-  };
 
   users = {
     defaultUserShell = pkgs.fish;
