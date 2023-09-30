@@ -1,7 +1,7 @@
 { inputs, outputs, authorizedKeys, lib, config, pkgs, ... }:
 {
   imports = [
-  ./fish 
+    ../modules/fish
   ];
 
   nixpkgs = {

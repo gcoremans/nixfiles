@@ -14,12 +14,11 @@
 		authorizedKeys = import ./authorized_keys.nix;
 	in {
 		nixosConfigurations = {
-			# Pending:
 			nyave = nixpkgs.lib.nixosSystem {
 				specialArgs = {inherit inputs outputs authorizedKeys;};
 				modules = [
-					./nixos/common.nix
-					./nixos/nyave.nix
+					./hosts/common.nix
+					./hosts/nyave.nix
 				];
 			};
 		};
