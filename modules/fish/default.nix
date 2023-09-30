@@ -19,6 +19,10 @@
       py = "python3";
       ss = "ss -ptua";
     };
+
+    #shellAliases = {
+    #  vim = "nvim";
+    #};
   };
 
   environment.etc = {

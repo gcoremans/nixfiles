@@ -2,6 +2,7 @@
 {
   imports = [
     ../modules/fish
+    ../modules/neovim
   ];
 
   nixpkgs = {
@@ -26,6 +27,7 @@
     iputils
     neovim
     ripgrep
+    bind
   ];
 
   users = {
