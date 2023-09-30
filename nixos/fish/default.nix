@@ -11,7 +11,7 @@
 
     shellInit = ''
       set fish_greeting ""
-      set -a fish_function_path /etc/fish/functions
+      set -p fish_function_path /etc/fish/functions
     '';
 
     shellAbbrs = {
