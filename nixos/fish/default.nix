@@ -7,6 +7,12 @@
 
     vendor.completions.enable = true;
     vendor.config.enable = true;
+    vendor.functions.enable = true;
+
+    shellInit = ''
+      set fish_greeting ""
+      set -a fish_function_path /etc/fish/functions
+    '';
 
     shellAbbrs = {
       dd = "dd bs=256K status=progress";
@@ -16,7 +22,6 @@
   };
 
   environment.etc = {
-    "fish/conf.d".source = ./config/conf.d;
     "fish/functions".source = ./config/functions;
   };
 }
