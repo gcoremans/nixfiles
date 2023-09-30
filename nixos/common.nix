@@ -1,6 +1,8 @@
 { inputs, outputs, authorizedKeys, lib, config, pkgs, ... }:
 {
-  imports = [ ./fish ];
+  imports = [
+  ./fish 
+  ];
 
   nixpkgs = {
     config = {
@@ -23,7 +25,6 @@
     git
     iputils
     neovim
-    nslookup
     ripgrep
   ];
 
@@ -38,8 +39,8 @@
     };
   };
 
-  services.openssh = {
-    enable = true;
-    passwordAuthentication = false;
+  services.openssh.enable = true;
+  services.openssh.settings = {
+    PasswordAuthentication = false;
   };
 }

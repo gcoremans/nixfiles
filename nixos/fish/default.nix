@@ -15,7 +15,8 @@
     };
   };
 
-  environment.etc.fish = {
-    source = ./config;
+  environment.etc = {
+    "fish/conf.d".source = ./config/conf.d;
+    "fish/functions".source = ./config/functions;
   };
 }
