@@ -28,6 +28,7 @@
     neovim
     ripgrep
     bind
+    python3
   ];
 
   users = {
