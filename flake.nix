@@ -19,6 +19,9 @@
 				modules = [
 					./hosts/common.nix
 					./hosts/nyave.nix
+
+					./sites/operandbe.nix
+					./sites/altijdmoe.nix
 				];
 			};
 		};
