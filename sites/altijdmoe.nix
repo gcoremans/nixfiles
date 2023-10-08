@@ -10,7 +10,7 @@
       serverAliases = [ "www.altijd.moe"
                         "ik.ben.altijd.moe" ];
 
-      root = "/var/www/moe";
+      root = "/var/www/altijd.moe";
     };
   };
 }

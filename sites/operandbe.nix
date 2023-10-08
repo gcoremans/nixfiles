@@ -9,10 +9,10 @@
 
       serverAliases = [ "www.operand.be" ];
 
-      root = "/var/www/operand";
+      root = "/var/www/operand.be";
 
       locations."/notes/" = {
-        extraConfig = "autoindex on;"
+        extraConfig = "autoindex on;";
       };
     };
   };
