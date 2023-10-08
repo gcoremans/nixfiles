@@ -3,6 +3,7 @@
   imports = [
     ../modules/fish
     ../modules/neovim
+    ../modules/ssh
   ];
 
   nixpkgs = {
