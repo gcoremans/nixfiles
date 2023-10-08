@@ -4,7 +4,7 @@
 		nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 	};
 
-	outputs = { self, nixpkgs, ... } @ inputs: let
+	outputs = { self, nixpkgs, nixpkgs-unstable, ... } @ inputs: let
 		inherit (self) outputs;
 		systems = [
 			"x86_64-linux"
@@ -14,7 +14,7 @@
 		authorizedKeys = import ./authorized_keys.nix;
 	in {
 		nixosConfigurations = {
-			nyave = nixpkgs.lib.nixosSystem {
+			nyave = nixpkgs-unstable.lib.nixosSystem {
 				specialArgs = {inherit inputs outputs authorizedKeys;};
 				modules = [
 					./hosts/common.nix

@@ -22,7 +22,6 @@
   environment.systemPackages = with pkgs; [
     curl
     dig
-    exa
     fish
     git
     iputils
