@@ -4,7 +4,7 @@
 
   services.nginx.virtualHosts = {
     "altijd.moe" = {
-      forceSSL = true;
+      addSSL = true;
       enableACME = true;
 
       serverAliases = [ "www.altijd.moe"

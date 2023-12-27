@@ -20,6 +20,11 @@
     };
   };
 
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 80 443 22 ];
+  };
+
   environment.systemPackages = with pkgs; [
     curl
     dig
