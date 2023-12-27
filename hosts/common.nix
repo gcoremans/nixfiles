@@ -4,6 +4,7 @@
     ../modules/fish
     ../modules/neovim
     ../modules/ssh
+    ../modules/ldapclient
   ];
 
   nixpkgs = {

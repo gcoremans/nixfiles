@@ -18,6 +18,7 @@
 
   imports =
     [ (modulesPath + "/profiles/qemu-guest.nix")
+      ../modules/openldap
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "virtio_pci" "virtio_scsi" "usbhid" ];
