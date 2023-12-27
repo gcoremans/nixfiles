@@ -3,7 +3,7 @@
   users.ldap = {
     enable = true;
     server = "ldaps://localhost";
-    base = "o=altijd.moe"
+    base = "o=altijd.moe";
 
     # Disable LDAP auth for users for now
     nsswitch = false;
