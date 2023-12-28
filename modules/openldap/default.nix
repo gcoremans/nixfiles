@@ -60,6 +60,6 @@
     };
   };
 
-  users.groups.certs.members = [ "openldap" ]; # Add OpenLDAP to the group that can read certs
+  users.groups.acme.members = [ "openldap" ]; # Add OpenLDAP to the group that can read certs
 
 }

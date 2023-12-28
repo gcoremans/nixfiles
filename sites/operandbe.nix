@@ -4,7 +4,7 @@
 
   services.nginx.virtualHosts = {
     "operand.be" = {
-      forceSSL = true;
+      addSSL = true;
       enableACME = true;
 
       serverAliases = [ "www.operand.be" ];
