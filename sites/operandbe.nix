@@ -16,4 +16,10 @@
       };
     };
   };
+
+  security.acme.certs = {
+    "operand.be" = {
+      group = "certs";
+    };
+  };
 }

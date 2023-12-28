@@ -13,4 +13,10 @@
       root = "/var/www/altijd.moe";
     };
   };
+
+  security.acme.certs = {
+    "altijd.moe" = {
+      group = "certs";
+    };
+  };
 }

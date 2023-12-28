@@ -1,11 +1,11 @@
 { lib, config, pkgs, ... }:
 {
-  networking.hosts = { "127.0.0.1" = [ "altijd.moe" ]; };
+  networking.hosts = { "127.0.0.1" = [ "altijd.moe" ]; }; # Hacky
   services.openldap = {
     enable = true;
     user = "openldap";
 
-    urlList = [ "ldaps://altijd.moe" ];
+    urlList = [ "ldaps://altijd.moe" "ldap://localhost" ];
 
     settings = {
       attrs = {
@@ -16,10 +16,10 @@
         olcTLSCACertificateFile = "/var/lib/acme/altijd.moe/full.pem";
         olcTLSCertificateFile = "/var/lib/acme/altijd.moe/cert.pem";
         olcTLSCertificateKeyFile = "/var/lib/acme/altijd.moe/key.pem";
-        olcTLSCipherSuite = "HIGH:!MEDIUM:!LOW:!aNULL:!eNULL:!SSLv2:!SSLv3";
+        #olcTLSCipherSuite = "HIGH:!MEDIUM:!LOW:!eNULL"; # Cannot get this to work no matter what I do
         olcTLSCRLCheck = "none";
         olcTLSVerifyClient = "never";
-        olcTLSProtocolMin = "3.1";
+        olcTLSProtocolMin = "3.3";
       };
 
       children = {
@@ -60,6 +60,6 @@
     };
   };
 
-  users.groups.acme.members = [ "openldap" ]; # Add OpenLDAP to the group that can read certs
+  users.groups.certs.members = [ "openldap" ]; # Add OpenLDAP to the group that can read certs
 
 }
