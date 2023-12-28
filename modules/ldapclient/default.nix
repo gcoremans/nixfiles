@@ -2,7 +2,7 @@
 {
   users.ldap = {
     enable = true;
-    server = "ldaps://localhost";
+    server = "ldaps://altijd.moe";
     base = "o=altijd.moe";
 
     # Disable LDAP auth for users for now

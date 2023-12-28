@@ -1,10 +1,11 @@
 { lib, config, pkgs, ... }:
 {
+  networking.hosts = { "127.0.0.1" = [ "altijd.moe" ]; };
   services.openldap = {
     enable = true;
     user = "openldap";
 
-    urlList = [ "ldaps:///" ];
+    urlList = [ "ldaps://altijd.moe" ];
 
     settings = {
       attrs = {
