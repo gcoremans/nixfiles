@@ -4,7 +4,6 @@
     ../modules/fish
     ../modules/neovim
     ../modules/ssh
-    ../modules/ldapclient
   ];
 
   nixpkgs = {
@@ -22,7 +21,10 @@
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 80 443 22 ];
+    allowedTCPPorts = [
+      22 # SSH
+      80 443 # HTTP(S)
+    ];
   };
 
   environment.systemPackages = with pkgs; [
@@ -35,6 +37,7 @@
     ripgrep
     bind
     python3
+    openssl_3_1
   ];
 
   users = {

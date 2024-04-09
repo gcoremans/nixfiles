@@ -8,7 +8,8 @@
       enableACME = true;
 
       serverAliases = [ "www.altijd.moe"
-                        "ik.ben.altijd.moe" ];
+                        "ik.ben.altijd.moe"
+                        "idm.altijd.moe" ];
 
       root = "/var/www/altijd.moe";
     };
