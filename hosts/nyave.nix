@@ -18,8 +18,6 @@
 
   imports =
     [ (modulesPath + "/profiles/qemu-guest.nix")
-      ../modules/kanidm/server.nix
-      ../modules/kanidm/client.nix
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "virtio_pci" "virtio_scsi" "usbhid" ];

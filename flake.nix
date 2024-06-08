@@ -20,8 +20,20 @@
 					./hosts/common.nix
 					./hosts/nyave.nix
 
-					#./sites/operandbe.nix
 					./sites/altijdmoe.nix
+				];
+			};
+			aesma = nixpkgs-unstable.lib.nixosSystem {
+				specialArgs = {inherit inputs outputs authorizedKeys;};
+				modules = [
+					./hosts/common.nix
+					./hosts/nyave.nix
+
+					#./sites/operandbe.nix
+					#./sites/altijdmoe.nix
+
+					./modules/haproxy/default.nix
+					./modules/kanidm/default.nix
 				];
 			};
 		};
