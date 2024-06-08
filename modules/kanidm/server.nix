@@ -12,4 +12,12 @@ let rootdomain = "altijd.moe"; in {
       #online_backup = {}; #TODO
     };
   };
+
+  users.groups.certs.members = [ "kanidm" ];
+
+  security.acme.certs = {
+    "${rootdomain}" = {
+      extraDomainNames = [ "idm.${rootdomain}" ];
+    };
+  };
 }

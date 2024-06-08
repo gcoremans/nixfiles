@@ -4,12 +4,10 @@
 
   services.nginx.virtualHosts = {
     "altijd.moe" = {
-      addSSL = true;
       enableACME = true;
 
       serverAliases = [ "www.altijd.moe"
-                        "ik.ben.altijd.moe"
-                        "idm.altijd.moe" ];
+                        "ik.ben.altijd.moe" ];
 
       root = "/var/www/altijd.moe";
     };
