@@ -10,7 +10,7 @@
     setXauthrequest = true;
 
     provider = "oidc";
-    clientId = "oauth2-proxy";
+    clientID = "oauth2-proxy";
     scope = "openid email profile";
     oidcIssuerUrl = "https://idm.altijd.moe/oauth2/openid/oauth2-proxy";
     redeemURL = "https://idm.altijd.moe/oauth2/token";
