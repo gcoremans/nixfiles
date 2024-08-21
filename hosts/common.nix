@@ -38,7 +38,7 @@
     ripgrep
     bind
     python3
-    openssl_3_1
+    openssl_3_3
   ];
 
   users = {
