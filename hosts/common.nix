@@ -1,4 +1,4 @@
-{ inputs, outputs, authorizedKeys, lib, config, pkgs, ... }:
+{ inputs, outputs, authorizedKeys, nixpkgs-unstable, lib, config, pkgs, ... }:
 {
   imports = [
     ../modules/fish
@@ -11,6 +11,13 @@
     config = {
       allowUnfree = true;
     };
+    overlays = [
+      (final: prev: {
+        unstable = import nixpkgs-unstable {
+          system = prev.system;
+        };
+      })
+    ];
   };
 
   nix = {

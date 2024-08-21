@@ -3,15 +3,16 @@
   imports = [ ../oauth2-proxy/default.nix ];
 
   services.haproxy = {
+    package = pkgs.unstable.haproxy;
     enable = true;
     config = lib.concatLines [
       ''
       global
-        lua-load ${./http.lua}
-        lua-load ${./auth-request.lua}
+        lua-prepend-path ${./lua}/?.lua
+        lua-load ${./lua}/auth-request.lua
 
       ''
-      ./haproxy.cfg
+      (builtins.readFile ./haproxy.cfg)
     ];
   };
 

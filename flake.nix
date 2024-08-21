@@ -15,7 +15,7 @@
 	in {
 		nixosConfigurations = {
 			nyave = nixpkgs.lib.nixosSystem {
-				specialArgs = {inherit inputs outputs authorizedKeys;};
+				specialArgs = {inherit inputs outputs authorizedKeys nixpkgs-unstable;};
 				modules = [
 					./hosts/common.nix
 					./hosts/nyave.nix
@@ -24,7 +24,7 @@
 				];
 			};
 			aesma = nixpkgs.lib.nixosSystem {
-				specialArgs = {inherit inputs outputs authorizedKeys;};
+				specialArgs = {inherit inputs outputs authorizedKeys nixpkgs-unstable;};
 				modules = [
 					./hosts/common.nix
 					./hosts/nyave.nix
