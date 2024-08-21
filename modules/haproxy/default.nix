@@ -11,7 +11,7 @@
         lua-load ${./auth-request.lua}
 
       ''
-      builtins.readFile ./haproxy.cfg
+      ./haproxy.cfg
     ];
   };
 

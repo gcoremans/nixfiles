@@ -14,7 +14,7 @@
 		authorizedKeys = import ./authorized_keys.nix;
 	in {
 		nixosConfigurations = {
-			nyave = nixpkgs-unstable.lib.nixosSystem {
+			nyave = nixpkgs.lib.nixosSystem {
 				specialArgs = {inherit inputs outputs authorizedKeys;};
 				modules = [
 					./hosts/common.nix
@@ -23,7 +23,7 @@
 					./sites/altijdmoe.nix
 				];
 			};
-			aesma = nixpkgs-unstable.lib.nixosSystem {
+			aesma = nixpkgs.lib.nixosSystem {
 				specialArgs = {inherit inputs outputs authorizedKeys;};
 				modules = [
 					./hosts/common.nix
