@@ -1,14 +1,18 @@
 { lib, config, pkgs, ... }:
 {
-  imports = [ ../modules/nginx ];
+  imports = [ ./common.nix ];
 
   services.nginx.virtualHosts = {
     "operand.be" = {
-      enableACME = true;
+      serverAliases = [ "*.operand.be" ];
 
-      serverAliases = [ "www.operand.be" ];
+      locations."/.well-known/acme-challenge" = {
+        root = "/var/lib/acme/.challenges";
+      };
 
-      root = "/var/www/operand.be";
+      locations."/" = {
+        root = "/var/www/operand.be";
+      };
 
       locations."/notes/" = {
         extraConfig = "autoindex on;";
@@ -18,7 +22,9 @@
 
   security.acme.certs = {
     "operand.be" = {
-      group = "certs";
+      extraDomainNames = [
+        "www.operand.be"
+      ];
     };
   };
 }

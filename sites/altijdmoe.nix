@@ -1,21 +1,30 @@
 { lib, config, pkgs, ... }:
 {
-  imports = [ ../modules/nginx ];
+  imports = [ ./common.nix ];
 
   services.nginx.virtualHosts = {
     "altijd.moe" = {
-      enableACME = true;
+      serverAliases = [ "*.altijd.moe" ];
 
-      serverAliases = [ "www.altijd.moe"
-                        "ik.ben.altijd.moe" ];
+      locations."/.well-known/acme-challenge" = {
+        root = "/var/lib/acme/.challenges";
+      };
 
-      root = "/var/www/altijd.moe";
+      locations."/" = {
+        root = "/var/www/altijd.moe";
+      };
     };
   };
 
   security.acme.certs = {
     "altijd.moe" = {
-      group = "certs";
+      extraDomainNames = [
+        "www.altijd.moe"
+        "ik.ben.altijd.moe"
+        "idm.altijd.moe"
+        "auth.altijd.moe"
+        "budget.altijd.moe"
+      ];
     };
   };
 }
