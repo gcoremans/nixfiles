@@ -20,6 +20,8 @@
     cookie.domain = ".altijd.moe";
     cookie.expire = "72h0m0s";
     cookie.refresh = "4h0m0s";
+
+	email.domains = [ "*" ];
   };
 
   security.acme.certs = {

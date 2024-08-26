@@ -20,6 +20,7 @@
 					./hosts/common.nix
 					./hosts/nyave.nix
 
+					./modules/haproxy/default.nix
 					./sites/altijdmoe.nix
 
 					./modules/haproxy/default.nix
