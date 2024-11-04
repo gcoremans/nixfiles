@@ -21,19 +21,22 @@
 					./hosts/nyave.nix
 
 					./sites/altijdmoe.nix
+
+					./modules/haproxy/default.nix
+					./modules/kanidm/default.nix
 				];
 			};
 			aesma = nixpkgs.lib.nixosSystem {
 				specialArgs = {inherit inputs outputs authorizedKeys nixpkgs-unstable;};
 				modules = [
 					./hosts/common.nix
-					./hosts/nyave.nix
+					./hosts/aesma.nix
 
 					#./sites/operandbe.nix
 					#./sites/altijdmoe.nix
 
-					./modules/haproxy/default.nix
-					./modules/kanidm/default.nix
+					#./modules/haproxy/default.nix
+					#./modules/kanidm/default.nix
 				];
 			};
 		};
