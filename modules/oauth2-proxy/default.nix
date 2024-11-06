@@ -21,7 +21,11 @@
     cookie.expire = "72h0m0s";
     cookie.refresh = "4h0m0s";
 
-	email.domains = [ "*" ];
+    email.domains = [ "*" ];
+
+    extraConfig = {
+      code-challenge-method = "S256";
+    };
   };
 
   security.acme.certs = {
