@@ -25,6 +25,7 @@
 
     extraConfig = {
       code-challenge-method = "S256";
+      whitelist-domain = ".altijd.moe";
     };
   };
 
