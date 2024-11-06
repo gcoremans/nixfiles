@@ -24,7 +24,7 @@
 					./sites/altijdmoe.nix
 
 					./modules/haproxy/default.nix
-					./modules/kanidm/default.nix
+					./modules/kanidm/server.nix
 				];
 			};
 			aesma = nixpkgs.lib.nixosSystem {
