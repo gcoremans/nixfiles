@@ -11,11 +11,8 @@
 
     provider = "oidc";
     clientID = "oauth2-proxy";
-    scope = "openid email profile";
+    scope = "openid email profile groups";
     oidcIssuerUrl = "https://idm.altijd.moe/oauth2/openid/oauth2-proxy";
-    redeemURL = "https://idm.altijd.moe/oauth2/token";
-    loginURL = "https://idm.altijd.moe/oauth2/authorise";
-    redirectURL = "https://auth.altijd.moe/oauth2/callback";
 
     cookie.domain = ".altijd.moe";
     cookie.expire = "72h0m0s";
