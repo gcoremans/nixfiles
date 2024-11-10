@@ -2,7 +2,7 @@
 {
   virtualisation.oci-containers.containers.actualbudget = {
       image = "actualbudget/actual-server:latest-alpine";
-      ports = "127.0.0.1:5006:5006";
+      ports = [ "127.0.0.1:5006:5006" ];
       volumes = [ "/var/actual-data:/data" ];
       environment = {
         #ACTUAL_HTTPS_KEY = /data/selfhost.key;
