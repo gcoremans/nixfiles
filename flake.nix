@@ -12,10 +12,11 @@
 		];
 		forAllSystems = nixpkgs.lib.genAttrs systems;
 		authorizedKeys = import ./authorized_keys.nix;
+		myArgs = {inherit inputs outputs authorizedKeys nixpkgs-unstable;};
 	in {
 		nixosConfigurations = {
 			nyave = nixpkgs.lib.nixosSystem {
-				specialArgs = {inherit inputs outputs authorizedKeys nixpkgs-unstable;};
+				specialArgs = myArgs;
 				modules = [
 					./hosts/common.nix
 					./hosts/nyave.nix
@@ -28,7 +29,7 @@
 				];
 			};
 			aesma = nixpkgs.lib.nixosSystem {
-				specialArgs = {inherit inputs outputs authorizedKeys nixpkgs-unstable;};
+				specialArgs = myArgs;
 				modules = [
 					./hosts/common.nix
 					./hosts/aesma.nix
