@@ -5,6 +5,7 @@
       ports = [ "127.0.0.1:5006:5006" ];
       volumes = [ "/var/actual-data:/data" ];
       environment = {
+        ACTUAL_LOGIN_METHOD = "header";
         #ACTUAL_HTTPS_KEY = /data/selfhost.key;
         #ACTUAL_HTTPS_CERT = /data/selfhost.crt;
         #ACTUAL_PORT = 5006;
