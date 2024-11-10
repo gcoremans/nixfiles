@@ -1,6 +1,6 @@
 { lib, config, pkgs, ... }:
 
-let pkg = pkgs.stdenv.mkDerivation(finalAttrs: {
+let pkg = pkgs.stdenv.mkDerivation(finalAttrs: rec {
   pname = "actualbudget";
   version = "24.11.0";
 
@@ -11,11 +11,11 @@ let pkg = pkgs.stdenv.mkDerivation(finalAttrs: {
     hash = "sha256-GwtJ42dBJXrOBIxwdrSvNeqQCl91m1XrtS3RBpEuZX0=";
   };
 
-  yarnOfflineCache = pkgs.stdenv.mkDerivation {
-    name = "actualbudget-offline-cache";
-    inherit src;
+  # necessary because nix doesnt support modern yarn versions for some fucking reason
+  yarnOfflineCache = pkgs.stdenv.mkDerivation { inherit src;
+  name = "actualbudget-${version}-offline-cache";
 
-    nativeBuildInputs = [
+    nativeBuildInputs = with pkgs; [
       yarn
       cacert # needed for git
       gitMinimal # needed to download git dependencies
@@ -28,7 +28,7 @@ let pkg = pkgs.stdenv.mkDerivation(finalAttrs: {
       export HOME=$(mktemp -d)
       yarn config set enableTelemetry 0
       yarn config set cacheFolder $out
-      yarn --install -- offline --cache-folder ${offlineCache}
+      yarn --verbose
 
       runHook postBuild
     '';
@@ -37,6 +37,8 @@ let pkg = pkgs.stdenv.mkDerivation(finalAttrs: {
     dontInstall = true;
     dontFixup = true;
   };
+
+  yarnBuildFlags = [ "--cache-folder ${yarnOfflineCache}" ];
 
   #yarnOfflineCache = pkgs.fetchYarnDeps {
   #  yarnLock = finalAttrs.src + "/yarn.lock";
