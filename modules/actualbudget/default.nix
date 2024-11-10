@@ -22,13 +22,16 @@ let pkg = pkgs.stdenv.mkDerivation(finalAttrs: rec {
       nodejs # needed for npm to download git dependencies
     ];
 
+		ELECTRON_SKIP_BINARY_DOWNLOAD = "1";
+
     buildPhase = ''
       runHook preBuild
 
       export HOME=$(mktemp -d)
       yarn config set enableTelemetry 0
-      yarn config set cacheFolder $out
-      yarn --verbose
+
+      echo "cacheFolder: \"$out\"" >> .yarnrc.yml
+      yarn
 
       runHook postBuild
     '';
@@ -38,7 +41,7 @@ let pkg = pkgs.stdenv.mkDerivation(finalAttrs: rec {
     dontFixup = true;
   };
 
-  yarnBuildFlags = [ "--cache-folder ${yarnOfflineCache}" ];
+  #yarnBuildFlags = [ "--cache-folder ${yarnOfflineCache}" ];
 
   #yarnOfflineCache = pkgs.fetchYarnDeps {
   #  yarnLock = finalAttrs.src + "/yarn.lock";
