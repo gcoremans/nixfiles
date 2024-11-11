@@ -20,12 +20,6 @@
 				modules = [
 					./hosts/common.nix
 					./hosts/nyave.nix
-
-					./modules/haproxy/default.nix
-					./sites/altijdmoe.nix
-
-					./modules/haproxy/default.nix
-					./modules/kanidm/server.nix
 				];
 			};
 			aesma = nixpkgs.lib.nixosSystem {
@@ -34,11 +28,12 @@
 					./hosts/common.nix
 					./hosts/aesma.nix
 
-					#./sites/operandbe.nix
-					#./sites/altijdmoe.nix
+					./sites/operandbe.nix
+					./sites/altijdmoe.nix
 
-					#./modules/haproxy/default.nix
-					#./modules/kanidm/default.nix
+					./modules/haproxy/default.nix
+					./modules/kanidm/default.nix
+					./modules/actualbudget/default.nix
 				];
 			};
 		};
