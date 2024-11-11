@@ -20,4 +20,8 @@ let rootdomain = "altijd.moe"; in {
       extraDomainNames = [ "idm.${rootdomain}" ];
     };
   };
+
+  systemd.services.kanidm.serviceConfig = {
+    StateDirectory = lib.mkForce "kanidm kanidm/backups";
+  };
 }
