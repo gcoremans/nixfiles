@@ -36,16 +36,40 @@
   };
 
   environment.systemPackages = with pkgs; [
-    curl
-    dig
+    # Basic tools
+    coreutils-full
     fish
     git
-    iputils
     neovim
-    ripgrep
+
+    # Networking
+    dig
     bind
+    iputils
+    curl
+    wget
+
+    # Programming environments
     python3
+
+    # Database clients
+    mariadb
+    sqlite
+    postgresql
+
+    # File manipulation
+    ## Compression
+    gnutar
     zip
+    unzip
+    gzip
+    xz
+    zstd
+    ## Search/replace
+    ripgrep
+    gnused
+
+    # Misc
     openssl_3_3
   ];
 
