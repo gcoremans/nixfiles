@@ -45,6 +45,7 @@
     ripgrep
     bind
     python3
+    zip
     openssl_3_3
   ];
 
