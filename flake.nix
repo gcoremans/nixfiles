@@ -31,7 +31,7 @@
 					./sites/operandbe.nix
 					./sites/altijdmoe.nix
 
-					.nix./modules/haproxy/default
+					./modules/haproxy/default.nix
 					./modules/kanidm/server.nix
 					./modules/actualbudget/default.nix
 				];
