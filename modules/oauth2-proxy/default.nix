@@ -10,9 +10,9 @@
     setXauthrequest = true;
 
     provider = "oidc";
-    clientID = "oauth2-proxy";
+    clientID = "altijdmoe_auth";
     scope = "openid email profile groups";
-    oidcIssuerUrl = "https://idm.altijd.moe/oauth2/openid/oauth2-proxy";
+    oidcIssuerUrl = "https://idm.altijd.moe/oauth2/openid/altijdmoe_auth";
 
     cookie.domain = ".altijd.moe";
     cookie.expire = "72h0m0s";
