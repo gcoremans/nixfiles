@@ -13,10 +13,6 @@
       locations."/" = {
         root = "/var/www/operand.be";
       };
-
-      locations."/notes/" = {
-        extraConfig = "autoindex on;";
-      };
     };
   };
 
