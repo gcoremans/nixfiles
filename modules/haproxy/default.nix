@@ -10,6 +10,7 @@
       global
         lua-prepend-path ${./lua}/?.lua
         lua-load ${./lua}/auth-request.lua
+        lua-load ${./lua}/cors.lua
 
       ''
       (builtins.readFile ./haproxy.cfg)
