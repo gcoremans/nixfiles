@@ -3,12 +3,6 @@
   networking.hostName = "aesma";
   system.stateVersion = "24.05";
 
-  users.users = {
-    root = {
-      openssh.authorizedKeys.keys = authorizedKeys;
-    };
-  };
-
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 

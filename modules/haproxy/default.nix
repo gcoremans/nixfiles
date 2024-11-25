@@ -18,4 +18,6 @@
   };
 
   users.groups.certs.members = [ "haproxy" ];
+
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
 }

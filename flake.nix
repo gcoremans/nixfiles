@@ -15,13 +15,7 @@
 		myArgs = {inherit inputs outputs authorizedKeys nixpkgs-unstable;};
 	in {
 		nixosConfigurations = {
-			nyave = nixpkgs.lib.nixosSystem {
-				specialArgs = myArgs;
-				modules = [
-					./hosts/common.nix
-					./hosts/nyave.nix
-				];
-			};
+			# VPS
 			aesma = nixpkgs.lib.nixosSystem {
 				specialArgs = myArgs;
 				modules = [
@@ -34,6 +28,28 @@
 					./modules/haproxy/default.nix
 					./modules/kanidm/server.nix
 					./modules/actualbudget/default.nix
+				];
+			};
+			# NAS
+			voya = nixpkgs.lib.nixosSystem {
+				specialArgs = myArgs;
+				modules = [
+					./hosts/common.nix
+				];
+			};
+			# Raspberry pi/media center
+			gog = nixpkgs.lib.nixosSystem {
+				specialArgs = myArgs;
+				modules = [
+					./hosts/common.nix
+				];
+			};
+			# Staging/testing
+			nyave = nixpkgs.lib.nixosSystem {
+				specialArgs = myArgs;
+				modules = [
+					./hosts/common.nix
+					./hosts/nyave.nix
 				];
 			};
 		};

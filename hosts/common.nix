@@ -31,7 +31,6 @@
     enable = true;
     allowedTCPPorts = [
       22 # SSH
-      80 443 # HTTP(S)
     ];
   };
 
@@ -77,6 +76,9 @@
     defaultUserShell = pkgs.fish;
 
     users = {
+      root = {
+        openssh.authorizedKeys.keys = authorizedKeys;
+      };
       gilles = {
         isNormalUser = true;
         openssh.authorizedKeys.keys = authorizedKeys;
