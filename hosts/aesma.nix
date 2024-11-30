@@ -6,9 +6,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  services.openssh.settings.PermitRootLogin = "prohibit-password";
-
-  nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
+  nixpkgs.hostPlatform = "aarch64-linux";
 
   imports =
     [ (modulesPath + "/profiles/qemu-guest.nix")

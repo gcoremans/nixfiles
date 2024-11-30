@@ -2,13 +2,38 @@
 {
   imports = [
     ../modules/fish
-    ../modules/neovim
     ../modules/ssh
-    ../modules/kanidm/client.nix
   ];
 
+  networking.hostName = "gog";
+  system.stateVersion = "24.05";
+
+  networking.wireless = {
+    enable = true;
+
+    environmentFile = "/var/psk.env";
+    networks."Aperture Science" = {
+      psk = "@PSK_WIFI@";
+    };
+  };
+
+  boot.loader.grub.enable = false;
+  boot.loader.generic-extlinux-compatible.enable = true;
+  boot.loader.timeout = 1;
+  system.activationScripts.patchBootScript = "${pkgs.gnused}/bin/sed -i 's/TIMEOUT [0-9]*/PROMPT 0/g' /boot/extlinux/extlinux.conf";
+
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888888";
+      fsType = "ext4";
+    };
+
+  networking.useDHCP = true;
+
   nixpkgs = {
+    hostPlatform.system = "armv7l-linux";
+    buildPlatform.system = "x86_64-linux";
     config = {
+      allowUnsupportedSystem = true;
       allowUnfree = true;
     };
     overlays = [
@@ -39,7 +64,7 @@
     coreutils-full
     fish
     git
-    neovim
+    vim
 
     # Networking
     dig
@@ -50,11 +75,6 @@
 
     # Programming environments
     python3
-
-    # Database clients
-    #mariadb
-    #sqlite
-    #postgresql
 
     # File manipulation
     ## Compression
@@ -72,15 +92,20 @@
     openssl_3_3
   ];
 
+  environment.variables = {
+    EDITOR = "vim";
+    VISUAL = "vim";
+  };
+
+  programs.vim = {
+    defaultEditor = true;
+  };
+
   users = {
     defaultUserShell = pkgs.fish;
 
     users = {
       root = {
-        openssh.authorizedKeys.keys = authorizedKeys;
-      };
-      gilles = {
-        isNormalUser = true;
         openssh.authorizedKeys.keys = authorizedKeys;
       };
     };
