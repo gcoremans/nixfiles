@@ -1,19 +1,19 @@
 {
 	inputs = {
-		nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+		nixpkgs-2411.url = "github:NixOS/nixpkgs/nixos-24.11";
 		nixpkgs-2405.url = "github:NixOS/nixpkgs/nixos-24.05";
 		nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
 		colmena.url = "github:zhaofengli/colmena";
 	};
 
-	outputs = { self, nixpkgs, nixpkgs-2405, nixpkgs-unstable, colmena, ... } @ inputs: let
+	outputs = { self, nixpkgs-2411, nixpkgs-2405, nixpkgs-unstable, colmena, ... } @ inputs: let
 		inherit (self) outputs;
 
-		lib = nixpkgs.lib;
+		lib = nixpkgs-2411.lib;
 
 		authorizedKeys = import ./authorized_keys.nix;
-		myArgs = {inherit inputs outputs authorizedKeys nixpkgs-unstable;};
+		myArgs = {inherit inputs outputs authorizedKeys nixpkgs-unstable nixpkgs-2411;};
 
 		conf = self.nixosConfigurations;
 
@@ -56,6 +56,7 @@
 				modules = [
 					# No common because it's small and no cache
 					./hosts/gog.nix
+					./modules/kodi/configuration.nix
 				];
 			};
 			# Staging/testing
@@ -73,7 +74,7 @@
 
 		colmena = {
 			meta = {
-				nixpkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
+				nixpkgs = import inputs.nixpkgs-2411 { system = "x86_64-linux"; };
 				nodeNixpkgs = builtins.mapAttrs (name: value: value.pkgs) conf; # Beware: https://github.com/zhaofengli/colmena/issues/60#issuecomment-1849931304
 				nodeSpecialArgs = builtins.mapAttrs (name: value: value._module.specialArgs) conf;
 			};

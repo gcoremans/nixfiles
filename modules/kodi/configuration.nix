@@ -15,7 +15,9 @@
 
   environment.systemPackages = [
     (pkgs.kodi.withPackages (kodiPkgs: with kodiPkgs; [
-      jellyfin
+      # Uses python in nativeBuildInputs for some reason, which causes crosscompile to fail
+      jellyfin.override { buildInputs = [ pkgs.python3.withPackages (p: with p; [ pyyaml ]) ];
+                          nativeBuildInputs = [  ]; }
       sendtokodi
       youtube
     ]))
