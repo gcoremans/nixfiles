@@ -3,17 +3,18 @@
 		nixpkgs-2411.url = "github:NixOS/nixpkgs/nixos-24.11";
 		nixpkgs-2405.url = "github:NixOS/nixpkgs/nixos-24.05";
 		nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+		nixpkgs-local.url = "path:/home/gilles/stuff/nixpkgs-local";
 
 		colmena.url = "github:zhaofengli/colmena";
 	};
 
-	outputs = { self, nixpkgs-2411, nixpkgs-2405, nixpkgs-unstable, colmena, ... } @ inputs: let
+	outputs = { self, nixpkgs-2411, nixpkgs-2405, nixpkgs-unstable, nixpkgs-local, colmena, ... } @ inputs: let
 		inherit (self) outputs;
 
 		lib = nixpkgs-2411.lib;
 
 		authorizedKeys = import ./authorized_keys.nix;
-		myArgs = {inherit inputs outputs authorizedKeys nixpkgs-unstable nixpkgs-2411;};
+		myArgs = {inherit inputs outputs authorizedKeys nixpkgs-2411 nixpkgs-unstable nixpkgs-local;};
 
 		conf = self.nixosConfigurations;
 

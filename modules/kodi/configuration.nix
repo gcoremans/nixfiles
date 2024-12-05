@@ -14,7 +14,7 @@
   nixpkgs.config.kodi.enableAdvancedLauncher = true;
 
   environment.systemPackages = [
-    (pkgs.kodi.withPackages (kodiPkgs: with kodiPkgs; [
+    (pkgs.kodi-wayland.withPackages (kodiPkgs: with kodiPkgs; [
       # Uses python in nativeBuildInputs for some reason, which causes crosscompile to fail
       jellyfin.override { buildInputs = [ pkgs.python3.withPackages (p: with p; [ pyyaml ]) ];
                           nativeBuildInputs = [  ]; }

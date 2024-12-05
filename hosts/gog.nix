@@ -1,4 +1,4 @@
-{ inputs, outputs, authorizedKeys, nixpkgs-2411, nixpkgs-unstable, lib, config, pkgs, ... }:
+{ inputs, outputs, authorizedKeys, nixpkgs-2411, nixpkgs-unstable, nixpkgs-local, lib, config, pkgs, ... }:
 {
   imports = [
     ../modules/fish
@@ -44,26 +44,49 @@
       allowUnfree = true;
     };
     overlays = [
-      #(final: prev: {
-      #  unstable = import nixpkgs-unstable {
-      #    localSystem = "x86_64-linux";
-      #    crossSystem = "armv7l-linux";
-      #    config = {
-      #      allowUnsupportedSystem = true;
-      #      allowUnfree = true;
+      #(final: prev:
+      #  let
+      #    unstable = import nixpkgs-unstable {
+      #      localSystem = "x86_64-linux";
+      #      crossSystem = "armv7l-linux";
+      #      config = {
+      #        allowUnsupportedSystem = true;
+      #        allowUnfree = true;
+      #      };
       #    };
-      #  };
-      #})
-      (final: prev: {
-        inherit (import nixpkgs-2411 {
-          localSystem = "x86_64-linux";
-          crossSystem = "armv7l-linux";
-          config = {
-            allowUnsupportedSystem = true;
-            allowUnfree = true;
+      #  in {
+      #    inherit unstable;
+      #  }
+      #)
+      #(final: prev:
+      #  let
+      #    pkgs2411 = import nixpkgs-2411 {
+      #      localSystem = "x86_64-linux";
+      #      crossSystem = "armv7l-linux";
+      #      config = {
+      #        allowUnsupportedSystem = true;
+      #        allowUnfree = true;
+      #      };
+      #    };
+      #  in {
+      #    inherit pkgs2411;
+      #  }
+      #)
+      (final: prev:
+        let
+          pkgslocal = import nixpkgs-local {
+            localSystem = "x86_64-linux";
+            crossSystem = "armv7l-linux";
+            config = {
+              allowUnsupportedSystem = true;
+              allowUnfree = true;
+            };
           };
-        }) kodi;
-      })
+        in {
+          inherit pkgslocal;
+
+        }
+      )
       (final: prev: {
         openjdk11_headless = ((prev.openjdk11_headless.override {
           # libIDL does not compile in cross-compile scenarios.
@@ -99,6 +122,25 @@
         }));
         jdk11_headless = final.openjdk11_headless;
       })
+      (final: prev: {
+        kodi-wayland = prev.pkgslocal.kodi-wayland.override {
+          jre_headless = prev.openjdk11_headless;
+        };
+      })
+      #(final: prev: {
+      #  kodi-wayland = prev.kodi-wayland.overrideAttrs (old: {
+      #    preConfigure = ''
+      #      cmakeFlagsArray+=("-DCORE_PLATFORM_NAME=wayland")
+      #    '';
+      #    postConfigure = ''
+      #      CXX=$CXX_FOR_BUILD LD=ld make -C tools/depends/native/JsonSchemaBuilder
+      #      cmakeFlags+=" -DWITH_JSONSCHEMABUILDER=$PWD/tools/depends/native/JsonSchemaBuilder/bin"
+
+      #      CXX=$CXX_FOR_BUILD LD=ld make EXTRA_CONFIGURE= -C tools/depends/native/TexturePacker
+      #      cmakeFlags+=" -DWITH_TEXTUREPACKER=$PWD/tools/depends/native/TexturePacker/bin"
+      #    '';
+      #  });
+      #})
     ];
   };
 

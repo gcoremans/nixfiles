@@ -122,6 +122,18 @@
         "type": "github"
       }
     },
+    "nixpkgs-local": {
+      "locked": {
+        "lastModified": 1733438134,
+        "narHash": "sha256-KVY9fBP3pkIUPtu2gNrUl5jfkO5SG9QJwex4V6qvi0w=",
+        "path": "/home/gilles/stuff/nixpkgs-local",
+        "type": "path"
+      },
+      "original": {
+        "path": "/home/gilles/stuff/nixpkgs-local",
+        "type": "path"
+      }
+    },
     "nixpkgs-unstable": {
       "locked": {
         "lastModified": 1733212471,
@@ -143,6 +155,7 @@
         "colmena": "colmena",
         "nixpkgs-2405": "nixpkgs-2405",
         "nixpkgs-2411": "nixpkgs-2411",
+        "nixpkgs-local": "nixpkgs-local",
         "nixpkgs-unstable": "nixpkgs-unstable"
       }
     },
